@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.app.partials.MainFragment"
+    tools:showIn="@layout/activity_main">
+
+    <ImageView
+        android:id="@+id/zoomed_image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:alpha="0.9"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/ActivityTitle"
+            android:layout_width="match_parent"
+            android:text="@string/app_name" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            style="@style/AppText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Прочети историята. Познай какво се е случило или надникни в отговора. Разкажи я на приятели и ги остави да разгадаят мистерията, като ти задават въпроси само с 'Да' и 'Не'."
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/btnGetRandom"
+            style="@style/AppButton"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="@string/play" />
+    </LinearLayout>
+</RelativeLayout>

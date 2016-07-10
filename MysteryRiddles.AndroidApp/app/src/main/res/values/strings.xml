@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Казуси</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_riddles">Казуси</string>
+    <string name="answer">Отговор</string>
+    <string name="play">Играй</string>
+    <string name="goBack">Назад</string>
+</resources>
