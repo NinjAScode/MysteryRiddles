@@ -70,6 +70,7 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
         txtDescription.setText(data.getDescription());
         txtCreatedOn.setText(Helper.getShortDateFormatter().format(data.getCreatedOn()));
         txtAuthor.setText("от " + data.getAuthor());
+        btnGetAnswer.setVisibility(View.VISIBLE);
     }
 
     private void loadPageData() {

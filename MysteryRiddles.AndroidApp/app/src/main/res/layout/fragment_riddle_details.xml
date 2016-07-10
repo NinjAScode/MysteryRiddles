@@ -32,8 +32,7 @@
                 <TextView
                     android:id="@+id/txtTitle"
                     style="@style/ActivityTitle"
-                    android:layout_width="match_parent"
-                    android:text="Title" />
+                    android:layout_width="match_parent" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -47,23 +46,20 @@
                         style="@style/SmallText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:text="10/07/2016" />
+                        android:layout_alignParentLeft="true" />
 
                     <TextView
                         android:id="@+id/txtAuthor"
                         style="@style/SmallText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="by Author" />
+                        android:layout_alignParentRight="true" />
                 </RelativeLayout>
 
                 <TextView
                     android:id="@+id/txtDescription"
                     style="@style/AppText"
-                    android:gravity="center_horizontal"
-                    android:text="Description" />
+                    android:gravity="center_horizontal" />
             </LinearLayout>
 
             <Button
@@ -72,7 +68,8 @@
                 android:layout_marginBottom="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:text="@string/answer" />
+                android:text="@string/answer"
+                android:visibility="gone"/>
 
         </LinearLayout>
     </ScrollView>
