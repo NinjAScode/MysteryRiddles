@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import ninjascode.mysteryriddles.R;
@@ -26,6 +27,7 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
 
     static Button btnGetAnswer;
     static TextView txtTitle, txtDescription, txtCreatedOn, txtAuthor;
+    static ProgressBar progressBar;
     RiddlesActivity riddlesActivity;
     RiddleViewModel riddle;
     Context context;
@@ -43,14 +45,17 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
         this.context = container.getContext();
         this.riddlesActivity = (RiddlesActivity) this.context;
 
-        btnGetAnswer = (Button) view.findViewById(R.id.btnGetAnswer);
 
         txtTitle = (TextView) view.findViewById(R.id.txtTitle);
         txtDescription = (TextView) view.findViewById(R.id.txtDescription);
         txtCreatedOn = (TextView) view.findViewById(R.id.txtCreatedOn);
         txtAuthor = (TextView) view.findViewById(R.id.txtAuthor);
 
+        btnGetAnswer = (Button) view.findViewById(R.id.btnGetAnswer);
         btnGetAnswer.setOnClickListener(this);
+
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarTips);
+
         loadPageData();
 
         return view;
@@ -71,6 +76,7 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
         txtCreatedOn.setText(Helper.getShortDateFormatter().format(data.getCreatedOn()));
         txtAuthor.setText("от " + data.getAuthor());
         btnGetAnswer.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void loadPageData() {

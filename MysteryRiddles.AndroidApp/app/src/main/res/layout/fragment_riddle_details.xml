@@ -56,6 +56,11 @@
                         android:layout_alignParentRight="true" />
                 </RelativeLayout>
 
+                <ProgressBar
+                    android:id="@+id/progressBarTips"
+                    style="@style/AppProgressBar"
+                    android:visibility="visible"/>
+
                 <TextView
                     android:id="@+id/txtDescription"
                     style="@style/AppText"
