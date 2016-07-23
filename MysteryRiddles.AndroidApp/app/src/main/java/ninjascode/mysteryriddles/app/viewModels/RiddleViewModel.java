@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
-import ninjascode.mysteryriddles.app.common.Helper;
+import ninjascode.mysteryriddles.app.common.DateTimeService;
 
 /**
  * Created by svetla.ivanova on 10.7.2016 г..
@@ -83,9 +83,9 @@ public class RiddleViewModel implements Parcelable {
             returnedModel.author = authorName == "null" ? "Анонимен" : authorName;
             String createdOnAsString = jObject.getString("CreatedOn");
             try {
-                returnedModel.createdOn = Helper.getDateFormatter().parse(createdOnAsString);
+                returnedModel.createdOn = DateTimeService.getDateFormatter().parse(createdOnAsString);
             } catch (Exception e) {
-                returnedModel.createdOn = Helper.getNoMsDateFormatter().parse(createdOnAsString);
+                returnedModel.createdOn = DateTimeService.getNoMsDateFormatter().parse(createdOnAsString);
             }
 
             return returnedModel;

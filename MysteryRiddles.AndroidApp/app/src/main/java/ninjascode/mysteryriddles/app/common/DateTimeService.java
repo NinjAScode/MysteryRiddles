@@ -8,24 +8,10 @@ import java.text.SimpleDateFormat;
 /**
  * Created by svetla.ivanova on 10.7.2016 г..
  */
-public class Helper {
+public class DateTimeService {
     private static SimpleDateFormat formatter;
     private static SimpleDateFormat noMsFormatter;
     private static SimpleDateFormat dayDateFormatter;
-
-    public static void makeText(Context context, String message){
-        Toast.makeText(
-                context,
-                message,
-                Toast.LENGTH_SHORT).show();
-    }
-
-    public static void makeText(Context context, String message, int duration){
-        Toast.makeText(
-                context,
-                message,
-                duration).show();
-    }
 
     public static SimpleDateFormat getDateFormatter() {
         if (formatter == null) {

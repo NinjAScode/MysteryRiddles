@@ -1,21 +1,26 @@
 package ninjascode.mysteryriddles.app.activities;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import ninjascode.mysteryriddles.R;
-import ninjascode.mysteryriddles.app.activities.fragments.MainFragment;
 import ninjascode.mysteryriddles.app.activities.fragments.RiddleDetailsFragment;
+import ninjascode.mysteryriddles.app.common.AppService;
+import ninjascode.mysteryriddles.app.common.FragmentService;
+import ninjascode.mysteryriddles.app.common.GlobalConstants;
+import ninjascode.mysteryriddles.app.common.UiService;
 
-public class RiddlesActivity extends AppCompatActivity {
+public class RiddlesActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String RIDDLE_DETAILS_FRAGMENT_TAG = "randomRiddleDetailsFragmentTag";
+
+    private RiddlesActivity context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +29,17 @@ public class RiddlesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getFragment(new RiddleDetailsFragment());
-            }
-        });
+        AppService.setToolbarLogo(this);
+        AppService.setToolbarTitle(this, toolbar);
 
         if (savedInstanceState == null) {
-            this.getFragment(new RiddleDetailsFragment());
+            this.getFragment(new RiddleDetailsFragment(), RIDDLE_DETAILS_FRAGMENT_TAG);
         }
+
+        this.context = this;
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(this);
     }
 
     @Override
@@ -59,8 +64,32 @@ public class RiddlesActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getFragment(Fragment fragment){
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.add(R.id.container, fragment).addToBackStack("tag").commit();
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.fab) {
+            this.getNewRandomActivity();
+        }
+    }
+
+    public void getFragment(Fragment fragment, String fragmentTag) {
+        FragmentService.getFragment(this, R.id.container, fragment, fragmentTag);
+    }
+
+    private void getNewRandomActivity() {
+        // TODO: remove this?
+        FragmentService.clearBackStack(context);
+
+        // TODO: add animation
+        this.getFragment(new RiddleDetailsFragment(), RIDDLE_DETAILS_FRAGMENT_TAG);
+
+//        // load data without creating a new fragment every time
+//        String visibleFragmentName = FragmentService.getLatestBackStackEntryName(context);
+//        if (!visibleFragmentName.equals(RIDDLE_DETAILS_FRAGMENT_TAG)) {
+//            FragmentService.clearBackStack(context);
+//            getFragment(new RiddleDetailsFragment(), RIDDLE_DETAILS_FRAGMENT_TAG);
+//        } else{
+//            RiddleDetailsFragment fragment = (RiddleDetailsFragment) getFragmentManager().findFragmentByTag(RIDDLE_DETAILS_FRAGMENT_TAG);
+//            fragment.loadPageData();
+//        }
     }
 }

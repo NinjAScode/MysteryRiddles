@@ -5,19 +5,19 @@
     tools:context=".views.app.partials.MainFragment"
     tools:showIn="@layout/activity_main">
 
-    <ImageView
-        android:id="@+id/zoomed_image"
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/background" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="25dp"
-        android:alpha="0.9"
         android:orientation="vertical">
 
         <TextView
@@ -32,6 +32,8 @@
             android:src="@drawable/logo" />
 
         <TextView
+            android:id="@+id/txtDescription"
+            android:lineSpacingExtra="10dp"
             style="@style/AppText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,12 +41,25 @@
             android:text="Прочети историята. Познай какво се е случило или надникни в отговора. Разкажи я на приятели и ги остави да разгадаят мистерията, като ти задават въпроси само с 'Да' и 'Не'."
             android:textSize="16dp" />
 
+    </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnGetRandom"
             style="@style/AppButton"
-            android:layout_marginBottom="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/play" />
+
     </LinearLayout>
 </RelativeLayout>

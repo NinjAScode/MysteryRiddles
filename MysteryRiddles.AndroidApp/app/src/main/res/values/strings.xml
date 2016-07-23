@@ -5,4 +5,9 @@
     <string name="answer">Отговор</string>
     <string name="play">Играй</string>
     <string name="goBack">Назад</string>
+    <string name="newRiddle">Нов Казус</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="answerTitle">Отговор</string>
 </resources>

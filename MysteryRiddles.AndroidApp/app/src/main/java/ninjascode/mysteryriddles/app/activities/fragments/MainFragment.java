@@ -3,15 +3,19 @@ package ninjascode.mysteryriddles.app.activities.fragments;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import ninjascode.mysteryriddles.R;
 import ninjascode.mysteryriddles.app.activities.MainActivity;
 import ninjascode.mysteryriddles.app.activities.RiddlesActivity;
+import ninjascode.mysteryriddles.app.common.GlobalConstants;
+import ninjascode.mysteryriddles.app.common.UiService;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -19,6 +23,8 @@ import ninjascode.mysteryriddles.app.activities.RiddlesActivity;
 public class MainFragment extends Fragment implements View.OnClickListener {
 
     static Button btnGetRandom;
+    static TextView txtTitle, txtDescription;
+
     MainActivity mainActivity;
     Context context;
 
@@ -36,8 +42,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         this.mainActivity = (MainActivity) this.context;
 
         btnGetRandom = (Button) view.findViewById(R.id.btnGetRandom);
-
         btnGetRandom.setOnClickListener(this);
+
+        txtTitle = (TextView)view.findViewById(R.id.txtTitle);
+        txtDescription = (TextView)view.findViewById(R.id.txtDescription);
+
+        UiService.setTypeface(context, GlobalConstants.TITLE_FONT_PATH, txtTitle);
+        UiService.setTypeface(context, GlobalConstants.CONTENT_FONT_PATH, txtDescription, btnGetRandom);
 
         return view;
         //return inflater.inflate(R.layout.fragment_main, container, false);

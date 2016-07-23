@@ -3,8 +3,6 @@ package ninjascode.mysteryriddles.app.activities.fragments;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,9 @@ import android.widget.TextView;
 
 import ninjascode.mysteryriddles.R;
 import ninjascode.mysteryriddles.app.activities.RiddlesActivity;
-import ninjascode.mysteryriddles.app.common.Helper;
+import ninjascode.mysteryriddles.app.common.DateTimeService;
+import ninjascode.mysteryriddles.app.common.GlobalConstants;
+import ninjascode.mysteryriddles.app.common.UiService;
 import ninjascode.mysteryriddles.app.data.contracts.IUpdatePageData;
 import ninjascode.mysteryriddles.app.tasks.GetRandomRiddleTask;
 import ninjascode.mysteryriddles.app.viewModels.RiddleViewModel;
@@ -24,13 +24,17 @@ import ninjascode.mysteryriddles.app.viewModels.RiddleViewModel;
  */
 public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<RiddleViewModel>, View.OnClickListener {
     public static final String RIDDLE_ANSWER_KEY = "riddleAnswerTip";
+    private static final String RIDDLE_ANSWER_FRAGMENT_TAG = "randomRiddleAnswerFragmentTag";
 
     static Button btnGetAnswer;
     static TextView txtTitle, txtDescription, txtCreatedOn, txtAuthor;
     static ProgressBar progressBar;
+
     RiddlesActivity riddlesActivity;
     RiddleViewModel riddle;
     Context context;
+
+    //FloatingActionButton fab;
 
     public RiddleDetailsFragment() {
     }
@@ -45,6 +49,13 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
         this.context = container.getContext();
         this.riddlesActivity = (RiddlesActivity) this.context;
 
+//        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                loadPageData();
+//            }
+//        });
 
         txtTitle = (TextView) view.findViewById(R.id.txtTitle);
         txtDescription = (TextView) view.findViewById(R.id.txtDescription);
@@ -55,6 +66,9 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
         btnGetAnswer.setOnClickListener(this);
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBarTips);
+
+        UiService.setTypeface(context, GlobalConstants.TITLE_FONT_PATH, txtTitle);
+        UiService.setTypeface(context, GlobalConstants.CONTENT_FONT_PATH, txtDescription, txtCreatedOn, txtAuthor, btnGetAnswer);
 
         loadPageData();
 
@@ -73,13 +87,13 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
         this.riddle = data;
         txtTitle.setText(data.getTitle());
         txtDescription.setText(data.getDescription());
-        txtCreatedOn.setText(Helper.getShortDateFormatter().format(data.getCreatedOn()));
+        txtCreatedOn.setText(DateTimeService.getShortDateFormatter().format(data.getCreatedOn()));
         txtAuthor.setText("от " + data.getAuthor());
         btnGetAnswer.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
 
-    private void loadPageData() {
+    public void loadPageData() {
         GetRandomRiddleTask getRandomRiddleTask = new GetRandomRiddleTask(context, this);
         getRandomRiddleTask.execute();
     }
@@ -90,6 +104,6 @@ public class RiddleDetailsFragment extends Fragment implements IUpdatePageData<R
         Bundle bundle = new Bundle();
         bundle.putParcelable(RIDDLE_ANSWER_KEY, riddle);
         fragment.setArguments(bundle);
-        riddlesActivity.getFragment(fragment);
+        riddlesActivity.getFragment(fragment, RIDDLE_ANSWER_FRAGMENT_TAG);
     }
 }
