@@ -17,14 +17,14 @@ import ninjascode.mysteryriddles.R;
 public class FragmentService {
     public static String getLatestBackStackEntryName(Activity context){
         FragmentManager fragmentManager = context.getFragmentManager();
-        FragmentManager.BackStackEntry backEntry = context.getFragmentManager().getBackStackEntryAt(context.getFragmentManager().getBackStackEntryCount() - 1);
+        FragmentManager.BackStackEntry backEntry = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1);
         return backEntry.getName();
     }
 
-    public static void getFragment(Activity context, int containerId, Fragment fragment, String fragmentTag){
-        context.getFragmentManager()
-                .beginTransaction()
-                .add(containerId, fragment, fragmentTag)
+    public static void getFragmentAnimated(Activity context, int containerId, Fragment fragment, String fragmentTag){
+        FragmentTransaction ft = context.getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.animator.fragment_fade_in, R.animator.fragment_fade_out);
+                ft.add(containerId, fragment, fragmentTag)
                 .addToBackStack(fragmentTag)
                 .commit();
     }

@@ -58,7 +58,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.btnGetRandom) {
             context.startActivity(new Intent(context, RiddlesActivity.class));
-//            this.riddlesActivity.getFragment(new RiddleDetailsFragment());
+//            this.riddlesActivity.getFragmentAnimated(new RiddleDetailsFragment());
         }
     }
 }

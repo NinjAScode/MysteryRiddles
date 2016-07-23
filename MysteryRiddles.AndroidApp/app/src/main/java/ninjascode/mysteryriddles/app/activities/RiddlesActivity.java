@@ -8,14 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import ninjascode.mysteryriddles.R;
 import ninjascode.mysteryriddles.app.activities.fragments.RiddleDetailsFragment;
 import ninjascode.mysteryriddles.app.common.AppService;
 import ninjascode.mysteryriddles.app.common.FragmentService;
-import ninjascode.mysteryriddles.app.common.GlobalConstants;
-import ninjascode.mysteryriddles.app.common.UiService;
 
 public class RiddlesActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String RIDDLE_DETAILS_FRAGMENT_TAG = "randomRiddleDetailsFragmentTag";
@@ -72,7 +69,7 @@ public class RiddlesActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void getFragment(Fragment fragment, String fragmentTag) {
-        FragmentService.getFragment(this, R.id.container, fragment, fragmentTag);
+        FragmentService.getFragmentAnimated(this, R.id.container, fragment, fragmentTag);
     }
 
     private void getNewRandomActivity() {
@@ -86,7 +83,7 @@ public class RiddlesActivity extends AppCompatActivity implements View.OnClickLi
 //        String visibleFragmentName = FragmentService.getLatestBackStackEntryName(context);
 //        if (!visibleFragmentName.equals(RIDDLE_DETAILS_FRAGMENT_TAG)) {
 //            FragmentService.clearBackStack(context);
-//            getFragment(new RiddleDetailsFragment(), RIDDLE_DETAILS_FRAGMENT_TAG);
+//            getFragmentAnimated(new RiddleDetailsFragment(), RIDDLE_DETAILS_FRAGMENT_TAG);
 //        } else{
 //            RiddleDetailsFragment fragment = (RiddleDetailsFragment) getFragmentManager().findFragmentByTag(RIDDLE_DETAILS_FRAGMENT_TAG);
 //            fragment.loadPageData();

@@ -14,4 +14,23 @@
     tools:context="ninjascode.mysteryriddles.app.activities.RiddlesActivity"
     tools:showIn="@layout/activity_riddles">
 
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/AppButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

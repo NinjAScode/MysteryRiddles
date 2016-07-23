@@ -1,8 +1,5 @@
 package ninjascode.mysteryriddles.app.activities;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
@@ -10,14 +7,11 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import ninjascode.mysteryriddles.R;
 import ninjascode.mysteryriddles.app.activities.fragments.MainFragment;
 import ninjascode.mysteryriddles.app.common.AppService;
 import ninjascode.mysteryriddles.app.common.FragmentService;
-import ninjascode.mysteryriddles.app.common.GlobalConstants;
-import ninjascode.mysteryriddles.app.common.UiService;
 
 public class MainActivity extends AppCompatActivity {
     private static final String MAIN_FRAGMENT_TAG = "mainFragmentTag";
@@ -33,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         AppService.setToolbarTitle(this, toolbar);
 
         if (savedInstanceState == null) {
-            FragmentService.getFragment(this, R.id.container, new MainFragment(), MAIN_FRAGMENT_TAG);
+            FragmentService.getFragmentAnimated(this, R.id.container, new MainFragment(), MAIN_FRAGMENT_TAG);
         }
     }
 
